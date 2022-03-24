@@ -7,4 +7,4 @@ const restaurantController = require('../controllers/restaurantController');
 router.post('/restaurant', restaurantController.crearRestaurante);
 router.get('/restaurant', restaurantController.consultarRestaurante);
 
-module.exports =  router
+module.exports =  router;
