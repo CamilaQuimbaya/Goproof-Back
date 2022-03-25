@@ -89,6 +89,7 @@ const loginUsuario = async(req, res = response) => {
             uid: dbUser.id,
             name: dbUser.name,
             email: dbUser.email,
+            profile: dbUser.profile,
             token
         });
 
@@ -120,6 +121,7 @@ const revalidarToken = async(req, res = response ) => {
         uid, 
         name: dbUser.name,
         email: dbUser.email,
+        profile: dbUser.profile,
         token
     });
 

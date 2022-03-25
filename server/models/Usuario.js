@@ -15,6 +15,9 @@ const UsuarioSchema = Schema({
         type: String,
         required: true
     },
+    profile: {
+        type: String
+    }
 });
 
 module.exports = model('Usuario', UsuarioSchema );
