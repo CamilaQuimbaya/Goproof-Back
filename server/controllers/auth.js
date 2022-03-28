@@ -127,10 +127,61 @@ const revalidarToken = async(req, res = response ) => {
 
 }
 
+const consultarUsuarios = async(req, res) => {
+    try {
+        const dbUser = await Usuario.find();
+        res.json(dbUser)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Ups.. Hay un error, comunicate con soporte')
+    }
+}
+
+const consultarUsuario = async(req, res) => {
+    try {
+        const dbUser = await Usuario.findById(req.params.id);
+        if(!dbUser){
+            res.status(404).json({msg: 'No se encontraron coincidencias'})
+        }
+        res.json(dbUser)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Ups.. Hay un error, comunicate con soporte')
+    }
+}
+
+ const actualizarUsuario = async(req, res) => {
+    try {
+        const {name, email,password, profile} = req.body
+        let dbUser = await Usuario.findById(req.params.id);
+
+        if(!dbUser){
+            res.status(404).json({mensaje: 'No se encontraron coincidencias para la actualizacion'})
+        }
+
+        dbUser.name = name;
+        dbUser.email = email;
+        dbUser.password = password;
+        dbUser.profile = profile;
+        
+
+        dbUser = await Usuario.findOneAndUpdate({_id: req.params.id}, dbUser, {new: true})
+        res.json(dbUser);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Ups.. Hay un error, comunicate con soporte')
+    }
+}
+
 
 
 module.exports = {
     crearUsuario,
     loginUsuario,
-    revalidarToken
+    revalidarToken,
+    consultarUsuarios,
+    consultarUsuario,
+    actualizarUsuario
 }

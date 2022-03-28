@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { required } = require('nodemon/lib/config');
 
 
 const UsuarioSchema = Schema({
